@@ -1,0 +1,94 @@
+<header class="site-header">
+  <a class="brand" href="#">
+    <img src="assets/media/logo.png" alt="Gracie Barra Tirol" class="logo" />
+  </a>
+
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" />
+  <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">☰</label>
+
+  <nav class="nav">
+    <ul class="nav-list">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#treinos">Treinos</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/media/hero.mp4" type="video/mp4" />
+  </video>
+
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content container">
+    <h1 class="hero-title">
+      A ARTE DO<br />
+      <span class="accent">JIU JITSU</span><br />
+      É PARA TODOS
+    </h1>
+    <p class="hero-subtitle">
+      Transforme sua vida através do Jiu Jitsu. Turmas para todas as idades e níveis no
+      <span class="accent">Gracie Barra Tirol</span>. Venha fazer sua primeira aula grátis!
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contato" class="btn btn-primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1h-2zm3 18H5V8h14v11z"
+          />
+        </svg>
+        Agendar Aula Grátis
+      </a>
+      <a href="#treinos" class="btn btn-outline">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"
+          />
+        </svg>
+        Ver Horários
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-item">
+          <span class="stat-number accent">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="scroll-hint-text">scroll</span>
+    <svg
+      class="scroll-hint-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </div>
+</section>
+
+<router-outlet />
