@@ -5,6 +5,8 @@
 		sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .container {
 	width: 100%;
 	padding: 0 1rem;
@@ -294,4 +296,44 @@
 	.container { max-width: 1140px }
 	.hero-title { font-size: 4.5rem }
 }
+
+/* About split section */
+.about-split {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+	padding: 3rem 1rem;
+	align-items: center;
+	color: #111;
+}
+
+.about-left .kicker { margin-bottom: 0.5rem }
+.kicker-red { color: #e2211c; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.about-title { font-size: 3rem; font-weight: 800; color: #000; margin: 0 0 1rem 0; font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; }
+.about-text { color: #222; line-height: 1.6; margin-bottom: 0.75rem }
+
+.about-right img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+@media (min-width: 768px) {
+	/* Use minmax(0, %) so columns can shrink and avoid overflow when gap is applied */
+	.about-split { grid-template-columns: minmax(0,55%) minmax(0,45%); padding: 4rem 1rem; gap: 3rem; box-sizing: border-box }
+	.about-title { font-size: 3rem }
+
+	/* Allow columns to shrink below their content width to avoid creating horizontal scroll */
+	.about-left, .about-right { min-width: 0 }
+	.about-right { overflow: hidden }
+	.about-right img { width: 100%; max-width: 100%; height: auto; display: block; object-fit: cover }
+}
+
+/* Ensure image stacks below text and never overflows on small screens */
+@media (max-width: 767px) {
+	.about-split {
+		grid-template-columns: 1fr;
+		grid-auto-rows: auto;
+	}
+	.about-left { order: 1 }
+	.about-right { order: 2; width: 100%; overflow: hidden }
+	.about-right img { max-width: 100%; height: auto; display: block; }
+}
+
 
