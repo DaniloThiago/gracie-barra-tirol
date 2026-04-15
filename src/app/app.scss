@@ -107,6 +107,7 @@
 
 .hero-title {
 	margin: 0 0 0.75rem 0;
+	font-family: 'Bebas Neue', sans-serif;
 	font-size: 2rem;
 	line-height: 1.05;
 	font-weight: 900;
@@ -306,9 +307,6 @@
 	color: #111;
 }
 
-.about-left .kicker { margin-bottom: 0.5rem }
-.kicker-red { color: #e2211c; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-.about-title { font-size: 3rem; font-weight: 800; color: #000; margin: 0 0 1rem 0; font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; }
 .about-text { color: #222; line-height: 1.6; margin-bottom: 0.75rem }
 
 .about-image-wrap {
@@ -415,8 +413,6 @@
 @media (min-width: 768px) {
 	/* Use minmax(0, %) so columns can shrink and avoid overflow when gap is applied */
 	.about-split { grid-template-columns: minmax(0,55%) minmax(0,45%); padding: 4rem 1rem; gap: 3rem; box-sizing: border-box }
-	.about-title { font-size: 3rem }
-
 	/* Allow columns to shrink below their content width to avoid creating horizontal scroll */
 	.about-left, .about-right { min-width: 0 }
 	.about-right { overflow: visible }
@@ -484,7 +480,7 @@
 .benefits-section__title {
 	margin: 0;
 	font-family: 'Bebas Neue', sans-serif;
-	font-size: 2.35rem;
+	font-size: 3rem;
 	line-height: 0.98;
 	text-transform: uppercase;
 	color: #0f172a;
@@ -502,10 +498,7 @@
 		padding: 1rem 1rem 5rem;
 	}
 
-	.benefits-section__title {
-		font-size: 3.1rem;
-		max-width: 16ch;
-	}
+	.benefits-section__title { max-width: 16ch; }
 
 	.benefits-grid {
 		margin-top: 2rem;

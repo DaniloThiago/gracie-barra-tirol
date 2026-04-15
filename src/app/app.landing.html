@@ -84,8 +84,11 @@
 
 <section class="about-split container" id="sobre">
   <div class="about-left">
-    <div class="kicker"><span class="kicker-red">Sobre Nós</span></div>
-    <h2 class="about-title">TRADIÇÃO E EXCELÊNCIA NO JIU JITSU</h2>
+    <app-section-heading
+      id="about-title"
+      eyebrow="Sobre Nós"
+      title="TRADIÇÃO E EXCELÊNCIA NO JIU JITSU"
+    />
 
     <p class="about-text">
       A <strong>Gracie Barra Tirol</strong> é uma academia afiliada à maior rede de Jiu Jitsu do
@@ -125,5 +128,7 @@
     </div>
   </div>
 </section>
+
+<app-schedule-section />
 
 <router-outlet />

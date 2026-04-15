@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BenefitCardComponent } from './benefit-card/benefit-card.component';
+import { SectionHeadingComponent } from './section-heading/section-heading.component';
+import { ScheduleSectionComponent } from './schedule-section/schedule-section.component';
 
 interface Stat {
   value: string;
@@ -14,7 +16,7 @@ interface Benefit {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BenefitCardComponent],
+  imports: [RouterOutlet, BenefitCardComponent, SectionHeadingComponent, ScheduleSectionComponent],
   templateUrl: './app.landing.html',
   styleUrl: './app.scss',
 })

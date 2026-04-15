@@ -1,0 +1,71 @@
+<section class="schedule-section" id="treinos" aria-labelledby="schedule-title">
+  <div class="schedule-shell">
+    <div class="schedule-header">
+      <app-section-heading
+        id="schedule-title"
+        [inverse]="true"
+        [compact]="true"
+        eyebrow="CALENDÁRIO DE TREINOS"
+        title="HORÁRIOS DA SEMANA"
+      />
+
+      <p class="schedule-intro">
+        Escolha o melhor horário para você. Temos turmas de manhã, tarde e noite, de segunda a
+        sábado.
+      </p>
+    </div>
+
+    <div class="schedule-tabs" role="tablist" aria-label="Dias da semana">
+      @for (day of days; track day.id) {
+        <button
+          type="button"
+          class="schedule-tab"
+          [class.schedule-tab--active]="day.id === activeDay()"
+          (click)="setActiveDay(day.id)"
+          [attr.aria-pressed]="day.id === activeDay()"
+        >
+          {{ day.label }}
+        </button>
+      }
+    </div>
+
+    <div class="schedule-grid">
+      @for (session of activeDayInfo().sessions; track session.time) {
+        <article [class]="'schedule-card schedule-card--' + session.variant">
+          <div class="schedule-card__top">
+            <div class="schedule-card__time-wrap">
+              <span [class]="'schedule-card__dot schedule-card__dot--' + session.variant"></span>
+              <span class="schedule-card__time">{{ session.time }}</span>
+            </div>
+
+            <span class="schedule-card__duration">{{ session.duration }}</span>
+          </div>
+
+          <div class="schedule-card__body">
+            <h3 class="schedule-card__title">{{ session.title }}</h3>
+
+            <ul class="schedule-card__meta">
+              <li>
+                <i class="ri-user-line" aria-hidden="true"></i>
+                <span>{{ session.instructor }}</span>
+              </li>
+              <li>
+                <i class="ri-bar-chart-line" aria-hidden="true"></i>
+                <span>{{ session.level }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="schedule-legend" aria-label="Legenda de categorias">
+      @for (item of legend; track item.label) {
+        <div class="schedule-legend__item">
+          <span [class]="'schedule-legend__dot schedule-legend__dot--' + item.variant"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
