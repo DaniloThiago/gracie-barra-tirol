@@ -231,6 +231,49 @@
   background: #8b827d;
 }
 
+.schedule-cta {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 1.6rem 0 0.4rem;
+  text-align: center;
+}
+
+.schedule-cta__text {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.88);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.schedule-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  justify-content: center;
+  min-height: 3.6rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background: #d41f1f;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 12px 26px rgba(185, 28, 28, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.schedule-cta__button i {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.schedule-cta__button:hover {
+  transform: translateY(-2px);
+  background: #bf1d1d;
+  box-shadow: 0 16px 30px rgba(185, 28, 28, 0.34);
+}
+
 @media (min-width: 768px) {
   .schedule-section {
     padding: 5rem 0 4rem;
@@ -280,5 +323,18 @@
 
   .schedule-card {
     min-height: 162px;
+  }
+
+  .schedule-cta {
+    padding-top: 1.35rem;
+  }
+
+  .schedule-cta__text {
+    font-size: 0.92rem;
+  }
+
+  .schedule-cta__button {
+    width: min(100%, 18.5rem);
+    padding-inline: 1.25rem;
   }
 }

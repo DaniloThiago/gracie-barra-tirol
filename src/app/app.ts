@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, signal } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BenefitCardComponent } from './benefit-card/benefit-card.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
@@ -20,8 +20,9 @@ interface Benefit {
   templateUrl: './app.landing.html',
   styleUrl: './app.scss',
 })
-export class App implements AfterViewInit {
+export class App implements AfterViewInit, OnDestroy {
   protected readonly title = signal('gracie-barra');
+  protected readonly isHeaderSticky = signal(false);
 
   protected stats: Stat[] = [
     { value: '500+', label: 'Alunos' },
@@ -48,10 +49,16 @@ export class App implements AfterViewInit {
     },
   ];
 
+  private readonly onScroll = (): void => {
+    this.isHeaderSticky.set(window.scrollY > 8);
+  };
+
   ngAfterViewInit(): void {
+    this.onScroll();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+
     const video = document.querySelector('.hero-video') as HTMLVideoElement | null;
     if (video) {
-      // Ensure the muted attribute/property is set before attempting play
       try {
         video.muted = true;
         video.setAttribute('muted', '');
@@ -63,11 +70,10 @@ export class App implements AfterViewInit {
       video.play().catch(err => {
         console.warn('Video play prevented or failed:', err);
 
-        // Create a lightweight overlay with a play button so the user can start playback
         const hero = document.querySelector('.hero') ?? document.body;
         const overlay = document.createElement('div');
         overlay.className = 'video-play-overlay';
-        overlay.innerHTML = '<button class="video-play-btn" aria-label="Play background video">▶</button>';
+        overlay.innerHTML = '<button class="video-play-btn" aria-label="Play background video">â–¶</button>';
         hero.appendChild(overlay);
 
         const btn = overlay.querySelector('button');
@@ -91,5 +97,9 @@ export class App implements AfterViewInit {
         }
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.onScroll);
   }
 }
