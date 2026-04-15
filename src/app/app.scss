@@ -204,7 +204,7 @@
 
 .scroll-hint {
 	position: absolute;
-	bottom: 2rem;
+	bottom: .5rem;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 6;
@@ -334,6 +334,65 @@
 	.about-left { order: 1 }
 	.about-right { order: 2; width: 100%; overflow: hidden }
 	.about-right img { max-width: 100%; height: auto; display: block; }
+}
+
+.benefits-section {
+	display: grid;
+	gap: 1.25rem;
+	padding: 0 1rem 3.5rem;
+}
+
+.benefits-section__header {
+	display: grid;
+	gap: 0.35rem;
+}
+
+.benefits-section__eyebrow {
+	margin: 0;
+	color: #e2211c;
+	font-size: 0.875rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.benefits-section__title {
+	margin: 0;
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 2.35rem;
+	line-height: 0.98;
+	text-transform: uppercase;
+	color: #0f172a;
+	max-width: 12ch;
+}
+
+.benefits-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.9rem;
+}
+
+@media (min-width: 768px) {
+	.benefits-section {
+		padding: 1rem 1rem 5rem;
+	}
+
+	.benefits-section__title {
+		font-size: 3.1rem;
+		max-width: 16ch;
+	}
+
+	.benefits-grid {
+		margin-top: 2rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+}
+
+@media (min-width: 1100px) {
+	.benefits-grid {
+		gap: 1.1rem;
+	}
 }
 
 

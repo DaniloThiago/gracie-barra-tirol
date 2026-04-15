@@ -107,6 +107,12 @@
       crianças, adultos e idosos. Seja para competição, defesa pessoal ou condicionamento físico,
       temos a turma ideal para você.
     </p>
+
+    <div class="benefits-grid">
+      @for (benefit of benefits; track benefit.text) {
+        <app-benefit-card [icon]="benefit.icon" [text]="benefit.text" />
+      }
+    </div>
   </div>
 
   <div class="about-right">

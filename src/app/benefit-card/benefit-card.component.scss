@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.benefit-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1.15rem;
+}
+
+.benefit-card__icon {
+  width: 1.5rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: .5rem;
+  background: #fdeeee;
+  color: #e2211c;
+}
+
+.benefit-card__icon i {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.benefit-card__text {
+  margin: 0;
+  color: #1f2937;
+  font-size: .8rem;
+  line-height: 1.35;
+}
