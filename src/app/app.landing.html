@@ -131,4 +131,166 @@
 
 <app-schedule-section />
 
+<section class="store-section" id="produtos">
+  <div class="container store-section__inner">
+  <div class="store-section__header">
+    <app-section-heading
+      id="store-title"
+      eyebrow="Loja Oficial"
+      title="Catálogo de Produtos"
+      [compact]="true"
+    />
+    <p class="store-section__description">
+      Selecione uma categoria e visualize cada item com fotos, tamanhos, modelos e valores no
+      modal.
+    </p>
+  </div>
+
+  <div class="store-filters" aria-label="Categorias da loja">
+    @for (category of storeCategories; track category.id) {
+      <button
+        type="button"
+        class="store-filter"
+        [class.store-filter--active]="category.id === activeStoreCategory()"
+        (click)="setActiveStoreCategory(category.id)"
+      >
+        {{ category.label }}
+      </button>
+    }
+  </div>
+
+    <div class="store-grid">
+      @for (product of visibleStoreProducts(); track product.id) {
+        <app-store-card [product]="product" (view)="openStoreModal($event)" />
+      }
+    </div>
+
+    <p class="store-section__footer">
+      Para mais informações sobre produtos, entre em contato conosco.
+    </p>
+  </div>
+</section>
+
+@if (selectedProduct(); as product) {
+  <div
+    class="store-modal"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="'store-modal-title'"
+    (click)="closeStoreModal()"
+  >
+    <div class="store-modal__backdrop" aria-hidden="true"></div>
+    <div class="store-modal__panel" (click)="$event.stopPropagation()">
+      <button type="button" class="store-modal__close-icon" (click)="closeStoreModal()" aria-label="Fechar modal">
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <div class="store-modal__gallery">
+        <div class="store-modal__image-frame">
+          <img
+            class="store-modal__image"
+            [src]="selectedStoreImage()"
+            [alt]="product.name + ' - imagem ' + (selectedImageIndex() + 1)"
+          />
+          <div class="store-modal__counter">
+            {{ selectedImageIndex() + 1 }}/{{ selectedStoreImages().length }}
+          </div>
+          <div class="store-modal__nav">
+            <button
+              type="button"
+              class="store-modal__nav-button"
+              (click)="previousStoreImage($event)"
+              aria-label="Imagem anterior"
+            >
+              Anterior
+            </button>
+            <button
+              type="button"
+              class="store-modal__nav-button"
+              (click)="nextStoreImage($event)"
+              aria-label="Próxima imagem"
+            >
+              Próxima
+            </button>
+          </div>
+        </div>
+
+        <div class="store-modal__thumbs" aria-label="Galeria de imagens">
+          @for (image of selectedStoreImages(); track image; let index = $index) {
+            <button
+              type="button"
+              class="store-modal__thumb"
+              [class.is-active]="index === selectedImageIndex()"
+              (click)="selectStoreImage(index)"
+            >
+              <img [src]="image" [alt]="product.name + ' miniatura ' + (index + 1)" />
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="store-modal__content">
+        <p class="store-modal__eyebrow">{{ product.categoryLabel }}</p>
+        <h3 class="store-modal__title" id="store-modal-title">{{ product.name }}</h3>
+        @if (selectedVariant(); as variant) {
+          <div class="store-modal__price-block">
+            <div class="store-modal__price">{{ variant.value }}</div>
+            <div class="store-modal__installment">{{ variant.installment }} no cartão</div>
+            <div class="store-modal__variant-label">
+              {{ variant.model }} · {{ variant.size }}
+            </div>
+          </div>
+        }
+
+        <p class="store-modal__summary">{{ product.summary }}</p>
+
+        @if (product.tags?.length) {
+          <div class="store-modal__tags">
+            @for (tag of product.tags; track tag) {
+              <span
+                class="store-tag"
+                [class.store-tag--hot]="tagTone(tag) === 'store-tag--hot'"
+                [class.store-tag--new]="tagTone(tag) === 'store-tag--new'"
+                [class.store-tag--promo]="tagTone(tag) === 'store-tag--promo'"
+                [class.store-tag--neutral]="tagTone(tag) === 'store-tag--neutral'"
+              >
+                {{ tag }}
+              </span>
+            }
+          </div>
+        }
+
+        <div class="store-modal__sizes">
+          <div class="store-modal__section-title">Tamanho</div>
+          <div class="store-modal__size-grid" role="list" aria-label="Seleção de tamanho">
+            @for (variant of product.sizeOptions; track variant.model + variant.size; let index = $index) {
+              <button
+                type="button"
+                class="store-modal__size-button"
+                [class.is-selected]="index === selectedVariantIndex()"
+                [class.is-unavailable]="variant.available === false"
+                [disabled]="variant.available === false"
+                (click)="selectStoreVariant(index)"
+              >
+                <span class="store-modal__size-button__size">{{ variant.size }}</span>
+                <span class="store-modal__size-button__model">{{ variant.model }}</span>
+              </button>
+            }
+          </div>
+
+          @if (hasUnavailableVariants()) {
+            <p class="store-modal__availability">
+              Tamanhos esgotados aparecem esmaecidos e não podem ser selecionados.
+            </p>
+          }
+        </div>
+
+        <button type="button" class="store-modal__cta" (click)="enterContact()">
+          Entrar em contato
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
 <router-outlet />

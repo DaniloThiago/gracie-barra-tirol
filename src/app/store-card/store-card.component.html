@@ -1,0 +1,38 @@
+<article
+  class="store-card"
+  role="button"
+  tabindex="0"
+  (click)="emitView()"
+  (keydown)="handleKeydown($event)"
+>
+  <div class="store-card__image-wrap">
+    <img class="store-card__image" [src]="product.images[0]" [alt]="product.name" />
+    @if (product.tags?.length) {
+      <div class="store-card__tags" aria-label="Marcadores do produto">
+        @for (tag of product.tags; track tag) {
+          <span
+            class="store-tag"
+            [class.store-tag--hot]="tagTone(tag) === 'store-tag--hot'"
+            [class.store-tag--new]="tagTone(tag) === 'store-tag--new'"
+            [class.store-tag--promo]="tagTone(tag) === 'store-tag--promo'"
+            [class.store-tag--neutral]="tagTone(tag) === 'store-tag--neutral'"
+          >
+            {{ tag }}
+          </span>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="store-card__body">
+    <div class="store-card__meta">{{ product.categoryLabel }}</div>
+    <h3 class="store-card__title">{{ product.name }}</h3>
+    <p class="store-card__summary">{{ product.summary }}</p>
+
+    <div class="store-card__footer">
+      <button type="button" class="store-card__button">
+        Visualizar
+      </button>
+    </div>
+  </div>
+</article>
