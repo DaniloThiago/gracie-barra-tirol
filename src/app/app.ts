@@ -22,10 +22,9 @@ export class App implements AfterViewInit {
   protected readonly title = signal('gracie-barra');
 
   protected stats: Stat[] = [
-    { value: '500+', label: 'Alunos Ativos' },
-    { value: '15+', label: 'Anos de Experiência' },
-    { value: '8', label: 'Professores Certificados' },
-    { value: '3x', label: 'Campeões Estaduais' },
+    { value: '500+', label: 'Alunos' },
+    { value: '15+', label: 'Anos' },
+    { value: '8', label: 'Profs.' },
   ];
 
   protected benefits: Benefit[] = [

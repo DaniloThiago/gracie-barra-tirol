@@ -63,15 +63,6 @@
         Ver Horários
       </a>
     </div>
-
-    <div class="hero-stats">
-      @for (stat of stats; track stat.label) {
-        <div class="stat-item">
-          <span class="stat-number accent">{{ stat.value }}</span>
-          <span class="stat-label">{{ stat.label }}</span>
-        </div>
-      }
-    </div>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">
@@ -116,7 +107,22 @@
   </div>
 
   <div class="about-right">
-    <img src="assets/media/team.jpg" alt="Equipe Gracie Barra Tirol" />
+    <div class="about-image-wrap">
+      <img src="assets/media/team.jpg" alt="Equipe Gracie Barra Tirol" />
+      <div class="about-official-badge" aria-label="Gracie Barra Oficial">
+        <span>Gracie</span>
+        <span>Barra</span>
+        <strong>Oficial</strong>
+      </div>
+      <div class="about-stats-card" aria-label="Destaques da academia">
+        @for (stat of stats; track stat.label) {
+          <div class="about-stat">
+            <span class="about-stat__value accent">{{ stat.value }}</span>
+            <span class="about-stat__label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
   </div>
 </section>
 

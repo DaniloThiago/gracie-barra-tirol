@@ -3,9 +3,8 @@
 	height: 100dvh;
 	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
 		sans-serif;
+	overflow-x: clip;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 .container {
 	width: 100%;
@@ -146,9 +145,9 @@
 }
 
 .btn-primary {
-	background: #e2211c;
+	background: #b91c1c;
 	color: #fff;
-	border: 2px solid #e2211c;
+	border: 2px solid #b91c1c;
 
 	&:hover { opacity: 0.88 }
 }
@@ -312,7 +311,106 @@
 .about-title { font-size: 3rem; font-weight: 800; color: #000; margin: 0 0 1rem 0; font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; }
 .about-text { color: #222; line-height: 1.6; margin-bottom: 0.75rem }
 
-.about-right img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.about-image-wrap {
+	position: relative;
+}
+
+.about-right img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 8px;
+}
+
+.about-right {
+	position: relative;
+}
+
+.about-official-badge {
+	position: absolute;
+	top: -0.7rem;
+	right: -0.7rem;
+	z-index: 2;
+	width: 14%;
+	min-width: 3.75rem;
+	max-width: 5.75rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: #b91c1c;
+	box-shadow: 0 14px 35px rgba(185, 28, 28, 0.28);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+	padding: 0.35rem;
+	color: #fff;
+	text-align: center;
+	transform: translate(10%, -10%);
+}
+
+.about-official-badge span,
+.about-official-badge strong {
+	display: block;
+	line-height: 0.9;
+	margin: 0;
+}
+
+.about-official-badge span {
+	font-size: 0.52rem;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+}
+
+.about-official-badge strong {
+	font-size: 0.64rem;
+	font-weight: 900;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+}
+
+.about-stats-card {
+	position: absolute;
+	left: -1.5rem;
+	bottom: -1rem;
+	z-index: 3;
+	width: 70%;
+	max-width: 70%;
+	background: #fff;
+	border-radius: 1.35rem;
+	box-shadow: 0 18px 40px rgba(17, 24, 39, 0.12);
+	border: 1px solid rgba(17, 24, 39, 0.06);
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	overflow: hidden;
+}
+
+.about-stat {
+	padding: 0.92rem 0.8rem 1rem;
+	text-align: center;
+}
+
+.about-stat + .about-stat {
+	border-left: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+.about-stat__value {
+	display: block;
+	font-size: clamp(0.93rem, 2.24vw, 1.31rem);
+	font-weight: 900;
+	line-height: 1;
+	color: #b91c1c;
+}
+
+.about-stat__label {
+	display: block;
+	margin-top: 0.32rem;
+	color: #64748b;
+	font-size: clamp(0.61rem, 1.1vw, 0.75rem);
+	font-weight: 500;
+	line-height: 1.1;
+}
 
 @media (min-width: 768px) {
 	/* Use minmax(0, %) so columns can shrink and avoid overflow when gap is applied */
@@ -321,8 +419,14 @@
 
 	/* Allow columns to shrink below their content width to avoid creating horizontal scroll */
 	.about-left, .about-right { min-width: 0 }
-	.about-right { overflow: hidden }
+	.about-right { overflow: visible }
 	.about-right img { width: 100%; max-width: 100%; height: auto; display: block; object-fit: cover }
+	.about-stats-card {
+		left: -1.4rem;
+		bottom: -1rem;
+		width: 70%;
+		max-width: 70%;
+	}
 }
 
 /* Ensure image stacks below text and never overflows on small screens */
@@ -330,10 +434,31 @@
 	.about-split {
 		grid-template-columns: 1fr;
 		grid-auto-rows: auto;
+		overflow-x: clip;
 	}
 	.about-left { order: 1 }
-	.about-right { order: 2; width: 100%; overflow: hidden }
+	.about-right { order: 2; width: 100%; overflow: visible }
+	.about-image-wrap { width: 100%; }
 	.about-right img { max-width: 100%; height: auto; display: block; }
+	.about-official-badge {
+		top: -0.55rem;
+		right: -0.55rem;
+		width: 15%;
+		min-width: 3.25rem;
+		max-width: 4.75rem;
+		transform: translate(12%, -12%);
+	}
+	.about-stats-card {
+		left: -0.8rem;
+		right: auto;
+		bottom: -0.85rem;
+		width: 70%;
+		max-width: 70%;
+		border-radius: 1rem;
+	}
+	.about-stat {
+		padding: 0.78rem 0.55rem 0.82rem;
+	}
 }
 
 .benefits-section {
