@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh": "ng build --base-href /gracie-barra-tirol/",
+    "deploy": "npm run build:gh && npx angular-cli-ghpages --dir=dist/gracie-barra/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
