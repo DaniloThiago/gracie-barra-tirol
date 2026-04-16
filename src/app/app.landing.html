@@ -267,7 +267,7 @@
               <button
                 type="button"
                 class="store-modal__size-button"
-                [class.is-selected]="index === selectedVariantIndex()"
+                [class.is-selected]="index === selectedSizeOptionIndex()"
                 [class.is-unavailable]="variant.available === false"
                 [disabled]="variant.available === false"
                 (click)="selectStoreVariant(index)"

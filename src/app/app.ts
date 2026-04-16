@@ -65,7 +65,7 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly activeStoreCategory = signal<StoreCategoryId>('todos');
   protected readonly selectedProduct = signal<StoreProduct | null>(null);
   protected readonly selectedImageIndex = signal(0);
-  protected readonly selectedVariantIndex = signal(0);
+  protected readonly selectedSizeOptionIndex = signal(0);
 
   protected readonly stats: Stat[] = [
     { value: '500+', label: 'Alunos' },
@@ -262,12 +262,7 @@ export class App implements AfterViewInit, OnDestroy {
       return null;
     }
 
-    const current = product.sizeOptions[this.selectedVariantIndex()];
-    if (current) {
-      return current;
-    }
-
-    return product.sizeOptions[0] ?? null;
+    return product.sizeOptions[this.selectedSizeOptionIndex()] ?? product.sizeOptions[0] ?? null;
   });
 
   protected readonly unavailableVariantIndices = computed(() => {
@@ -352,14 +347,14 @@ export class App implements AfterViewInit, OnDestroy {
   protected openStoreModal(product: StoreProduct): void {
     this.selectedProduct.set(product);
     this.selectedImageIndex.set(0);
-    this.selectedVariantIndex.set(this.findFirstAvailableVariantIndex(product));
+    this.selectedSizeOptionIndex.set(this.findFirstAvailableSizeOptionIndex(product));
     this.lockStoreScroll();
   }
 
   protected closeStoreModal(): void {
     this.selectedProduct.set(null);
     this.selectedImageIndex.set(0);
-    this.selectedVariantIndex.set(0);
+    this.selectedSizeOptionIndex.set(0);
     this.unlockStoreScroll();
   }
 
@@ -373,12 +368,12 @@ export class App implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const variant = product.sizeOptions[index];
-    if (!variant?.available) {
+    const option = product.sizeOptions[index];
+    if (option.available === false) {
       return;
     }
 
-    this.selectedVariantIndex.set(index);
+    this.selectedSizeOptionIndex.set(index);
   }
 
   protected previousStoreImage(event?: Event): void {
@@ -442,7 +437,7 @@ export class App implements AfterViewInit, OnDestroy {
     this.previousBodyOverflow = '';
   }
 
-  private findFirstAvailableVariantIndex(product: StoreProduct): number {
+  private findFirstAvailableSizeOptionIndex(product: StoreProduct): number {
     const firstAvailable = product.sizeOptions.findIndex(variant => variant.available !== false);
     return firstAvailable >= 0 ? firstAvailable : 0;
   }
