@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BenefitCardComponent } from './benefit-card/benefit-card.component';
+import { ContactSectionComponent } from './contact-section/contact-section.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
 import { ScheduleSectionComponent } from './schedule-section/schedule-section.component';
 import { TestimonialsSectionComponent } from './testimonials-section/testimonials-section.component';
@@ -59,6 +60,7 @@ function createStoreProduct(
   imports: [
     RouterOutlet,
     BenefitCardComponent,
+    ContactSectionComponent,
     SectionHeadingComponent,
     ScheduleSectionComponent,
     TestimonialsSectionComponent,

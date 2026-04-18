@@ -1,0 +1,123 @@
+<section class="contact-section" id="contato" aria-labelledby="contact-title">
+  <div class="contact-shell">
+    <div class="contact-copy">
+      <p class="contact-copy__eyebrow">Contato & Agendamento</p>
+      <h2 class="contact-copy__title" id="contact-title">
+        <span>Agende sua</span>
+        <span class="contact-copy__title-accent">aula grátis</span>
+      </h2>
+
+      <p class="contact-copy__description">
+        Venha conhecer a Gracie Barra Tirol! Preencha o formulário e nossa equipe entrará em
+        contato para confirmar seu agendamento. Primeira aula sempre gratuita!
+      </p>
+
+      <div class="contact-list" aria-label="Informações de contato">
+        @for (item of contactItems; track item.label) {
+          <div class="contact-item">
+            <div class="contact-item__icon" aria-hidden="true">
+              <i [class]="item.icon"></i>
+            </div>
+
+            <div class="contact-item__content">
+              <span class="contact-item__label">{{ item.label }}</span>
+              <strong>{{ item.value }}</strong>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-social" aria-label="Redes sociais">
+        @for (social of socialLinks; track social.label) {
+          <a class="contact-social__link" [href]="social.href" [attr.aria-label]="social.label">
+            <i [class]="social.icon" aria-hidden="true"></i>
+          </a>
+        }
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h3 class="contact-form-card__title">Formulário de Agendamento</h3>
+
+      <form class="contact-form" #contactForm (submit)="sendToWhatsApp(contactForm); $event.preventDefault()">
+        <div class="contact-form__row">
+          <label class="contact-field">
+            <span>Nome Completo *</span>
+            <input type="text" name="name" placeholder="Seu nome" required />
+          </label>
+
+          <label class="contact-field">
+            <span>Telefone *</span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="(84) 99999-0000"
+              required
+              maxlength="15"
+              inputmode="tel"
+              (input)="formatPhoneInput($event)"
+            />
+          </label>
+        </div>
+
+        <label class="contact-field">
+          <span>E-mail *</span>
+          <input type="email" name="email" placeholder="seu@email.com" required />
+        </label>
+
+        <div class="contact-form__row">
+          <label class="contact-field">
+            <span>Turma de Interesse</span>
+            <select name="class">
+              <option selected>Selecione...</option>
+              <option>Adulto</option>
+              <option>Feminino</option>
+              <option>Infantil (5-12 anos)</option>
+              <option>Avançado</option>
+            </select>
+          </label>
+
+          <label class="contact-field">
+            <span>Horário Preferido</span>
+            <select name="time">
+              <option selected>Selecione...</option>
+              <option>Manhã (06h30 - 12h)</option>
+              <option>Tarde (12h - 18h)</option>
+              <option>Noite (18h30 - 22h)</option>
+              <option>Sábado</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="contact-field">
+          <span>Experiência Anterior</span>
+          <select name="experience">
+            <option selected>Nenhuma experiência</option>
+            <option>Iniciante (menos de 1 ano)</option>
+            <option>Intermediário (1-3 anos)</option>
+            <option>Avançado (3+ anos)</option>
+          </select>
+        </label>
+
+        <label class="contact-field">
+          <span>Mensagem <small>(máx. 500 caracteres)</small></span>
+          <textarea
+            name="message"
+            rows="4"
+            maxlength="500"
+            placeholder="Alguma dúvida ou informação adicional?"
+          ></textarea>
+        </label>
+
+        <button type="submit" class="contact-form__submit">
+          <i class="ri-calendar-check-line" aria-hidden="true"></i>
+          Nos envie um WhatsApp
+        </button>
+
+        <p class="contact-form__note">
+          Ao enviar, você concorda em receber contato da nossa equipe.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
