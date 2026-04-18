@@ -1,0 +1,79 @@
+<section class="testimonials-section" id="depoimentos" aria-labelledby="testimonials-title">
+  <div class="testimonials-shell">
+    <div class="testimonials-header">
+      <div class="testimonials-header__copy">
+        <p class="testimonials-header__eyebrow">Depoimentos</p>
+        <h2 class="testimonials-header__title" id="testimonials-title">
+          <span>O que nossos</span>
+          <span class="testimonials-header__title-accent">alunos dizem</span>
+        </h2>
+      </div>
+
+      <p class="testimonials-header__description">
+        Histórias reais de transformação dentro e fora do tatame da Gracie Barra Tirol.
+      </p>
+    </div>
+
+    <div class="testimonials-layout">
+      <article class="testimonials-feature">
+        <div class="testimonials-feature__quote-mark" aria-hidden="true">
+          <i class="ri-double-quotes-l"></i>
+        </div>
+
+        <blockquote class="testimonials-feature__quote">
+          {{ activeTestimonial().quote }}
+        </blockquote>
+
+        <div class="testimonials-feature__footer">
+          <div class="testimonials-feature__meta">
+            <p class="testimonials-feature__author">{{ activeTestimonial().author }}</p>
+            <p class="testimonials-feature__subtitle">{{ activeTestimonial().badge }}</p>
+
+            <div class="testimonials-feature__rating" aria-label="Avaliação de cinco estrelas">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <i class="ri-star-fill" aria-hidden="true"></i>
+              }
+            </div>
+          </div>
+
+          <div class="testimonials-feature__belt">
+            <span class="testimonials-feature__belt-dot" aria-hidden="true"></span>
+            <span>{{ activeTestimonial().belt }}</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="testimonials-sidebar" aria-label="Lista de depoimentos">
+        <div class="testimonials-sidebar__list">
+          @for (testimonial of testimonials; track testimonial.id; let index = $index) {
+            <button
+              type="button"
+              class="testimonial-card"
+              [class.testimonial-card--active]="isActive(index)"
+              (click)="setActiveTestimonial(index)"
+            >
+              <div class="testimonial-card__head">
+                <strong>{{ testimonial.author }}</strong>
+                <span class="testimonial-card__belt">
+                  <i class="testimonial-card__belt-dot" aria-hidden="true"></i>
+                  {{ testimonial.belt }}
+                </span>
+              </div>
+
+              <p>{{ testimonial.quote }}</p>
+            </button>
+          }
+        </div>
+      </aside>
+    </div>
+
+    <div class="testimonials-stats" aria-label="Indicadores da academia">
+      @for (stat of stats; track stat.label) {
+        <article class="stat-card">
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.label }}</span>
+        </article>
+      }
+    </div>
+  </div>
+</section>

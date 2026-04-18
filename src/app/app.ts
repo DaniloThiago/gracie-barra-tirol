@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { BenefitCardComponent } from './benefit-card/benefit-card.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
 import { ScheduleSectionComponent } from './schedule-section/schedule-section.component';
+import { TestimonialsSectionComponent } from './testimonials-section/testimonials-section.component';
 import { StoreCardComponent, type StoreProduct } from './store-card/store-card.component';
 
 type StoreCategoryId = 'todos' | 'kimonos' | 'rashguards' | 'shorts' | 'faixas' | 'acessorios';
@@ -55,7 +56,14 @@ function createStoreProduct(
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BenefitCardComponent, SectionHeadingComponent, ScheduleSectionComponent, StoreCardComponent],
+  imports: [
+    RouterOutlet,
+    BenefitCardComponent,
+    SectionHeadingComponent,
+    ScheduleSectionComponent,
+    TestimonialsSectionComponent,
+    StoreCardComponent,
+  ],
   templateUrl: './app.landing.html',
   styleUrl: './app.scss',
 })
